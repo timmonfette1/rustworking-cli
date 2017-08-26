@@ -39,6 +39,9 @@ How to Compile
 Download the code and build it:<br />
 `$ cargo build --release`
 
+During the compiling, liboping will throw a bunch of warnings. Don't worry about them,
+they don't actually break any of the code.
+
 After that, you can find the executable binary in:<br />
 `target/release/rustworking-cli`
 

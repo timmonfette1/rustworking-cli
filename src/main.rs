@@ -145,6 +145,13 @@ fn ping_helper(verbose: bool, ip: &str, subnet: &str, filepath: &str) {
         }
     } else if !subnet.is_empty() {
         rustyping::ping_subnet(verbose, subnet);
+        /*let results = rustyping::ping_subnet(verbose, subnet);
+        for res in results {
+            match res {
+                Ok(r)  => println!("{}", r),
+                Err(e) => println!("{}", e),
+            }
+        }*/
     } else {
         match rustyping::ping_ip(verbose, ip) {
             Ok(r)  => println!("{}", r),
