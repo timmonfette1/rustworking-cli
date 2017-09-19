@@ -19,7 +19,7 @@ extern crate argparse;
 extern crate rustworking_core;
 
 use argparse::{ArgumentParser, Store, StoreTrue, Print};
-use rustworking_core::rustyping;
+use rustworking_core::rustytools;
 
 use std::env;
 use std::process::exit;
@@ -136,7 +136,7 @@ fn main() {
 // Function to help run a PING
 fn ping_helper(verbose: bool, ip: &str, subnet: &str, filepath: &str) {
     if !filepath.is_empty() {
-        let results = rustyping::ping_file(verbose, filepath);
+        let results = rustytools::ping_file(verbose, filepath);
         for res in results {
             match res {
                 Ok(r)  => println!("{}", r),
@@ -144,7 +144,7 @@ fn ping_helper(verbose: bool, ip: &str, subnet: &str, filepath: &str) {
             }
         }
     } else if !subnet.is_empty() { 
-        let results = rustyping::ping_subnet(verbose, subnet);
+        let results = rustytools::ping_subnet(verbose, subnet);
         for res in results {
             match res {
                 Ok(r)  => println!("{}", r),
@@ -152,7 +152,7 @@ fn ping_helper(verbose: bool, ip: &str, subnet: &str, filepath: &str) {
             }
         }
     } else {
-        match rustyping::ping_ip(verbose, ip) {
+        match rustytools::ping_ip(verbose, ip) {
             Ok(r)  => println!("{}", r),
             Err(e) => println!("{}", e),
         }
