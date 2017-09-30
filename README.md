@@ -59,6 +59,7 @@ You can see a usage for the tool by simply running:<br />
 The tool will only run if you specify which operation you'd like to run:
 
   - `$ rustworking-cli -t ping`
+  - `$ rustworking-cli -t http`
   - `$ rustworking-cli -t tcp`
   - `$ rustworking-cli --tool udp`
 
@@ -71,7 +72,7 @@ Usage
 -----------
 ```
 Usage:
-    ./target/release/rustworking-cli [OPTIONS]
+    ./target/debug/rustworking-cli [OPTIONS]
 
 Test connections to a server or set of servers.
 
@@ -79,7 +80,7 @@ optional arguments:
   -h,--help             show this help message and exit
   -V,--version          Show version
   -v,--verbose          Verbose execution
-  -t,--tool TOOL        Network tool to use [ping, tcp, udp]
+  -t,--tool TOOL        Network tool to use [ping, http, tcp, udp]
   -i,--ip IP            IP Address of server
   -p,--port PORT        Port to test connection on
   -s,--subnet SUBNET    Subnet of addresses to test on
