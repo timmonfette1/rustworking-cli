@@ -68,7 +68,7 @@ fn main() {
 
         ap.refer(&mut options.tool)
             .add_option(&["-t", "--tool"], Store,
-                        "Network tool to use [ping, tcp, udp]");
+                        "Network tool to use [ping, http, tcp, udp]");
 
         ap.refer(&mut options.ip)
             .add_option(&["-i", "--ip"], Store,
@@ -122,6 +122,8 @@ fn main() {
     match Some(&*options.tool.to_string().to_ascii_lowercase()) {
         Some("ping")  => ping_helper(options.verbose, &options.ip,
                                     &options.subnet, &options.filepath),
+        Some("http")  => http_helper(options.verbose, &options.ip,
+                                     &options.subnet, &options.filepath),
         Some("tcp")   => println!("Tool: tcp"),
         Some("udp")   => println!("Tool: udp"),
         _             => 
@@ -153,6 +155,20 @@ fn ping_helper(verbose: bool, ip: &str, subnet: &str, filepath: &str) {
         }
     } else {
         match rustytools::ping_ip(verbose, ip) {
+            Ok(r)  => println!("{}", r),
+            Err(e) => println!("{}", e),
+        }
+    }
+}
+
+// Function to help run an HTTP request
+fn http_helper(verbose: bool, ip: &str, subnet: &str, filepath: &str) {
+    if !filepath.is_empty() {
+        println!("Here's where I'd HTTP a file");
+    } else if !subnet.is_empty() {
+        println!("Here's where I'd HTTP a subnet");
+    } else {
+        match rustytools::http_ip(verbose, ip) {
             Ok(r)  => println!("{}", r),
             Err(e) => println!("{}", e),
         }
