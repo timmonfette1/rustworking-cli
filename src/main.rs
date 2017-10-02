@@ -164,7 +164,13 @@ fn ping_helper(verbose: bool, ip: &str, subnet: &str, filepath: &str) {
 // Function to help run an HTTP request
 fn http_helper(verbose: bool, ip: &str, subnet: &str, filepath: &str) {
     if !filepath.is_empty() {
-        println!("Here's where I'd HTTP a file");
+        let results = rustytools::http_file(verbose, filepath);
+        for res in results {
+            match res {
+                Ok(r)  => println!("{}", r),
+                Err(e) => println!("{}", e),
+            }
+        }
     } else if !subnet.is_empty() {
         println!("Here's where I'd HTTP a subnet");
     } else {
